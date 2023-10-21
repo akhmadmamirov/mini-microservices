@@ -25,13 +25,19 @@ app.post("/posts", async (req, res) => {
 
     res.status(201).json(posts[id])
 
-    await axios.post("https://localhost:4005/events", {
+    await axios.post("http://localhost:4005/events", {
         type: "PostCreated",
         data: {
             id, title
         }
     })
 
+})
+
+app.post('/events', (req, res) => {
+    console.log('received an event', req.body.type)
+
+    res.status(201).json({})
 })
 
 app.listen((4000), () => {
