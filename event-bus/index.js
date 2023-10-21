@@ -24,12 +24,12 @@ app.post("/events", async (req, res) => {
         console.error("Error posting to 4001", err);
     }
 
-    // try {
-    //     await axios.post('http://localhost:4002/events', event);
-    //     console.log("Posted to 4002");
-    // } catch (err) {
-    //     console.error("Error posting to 4002", err);
-    // }
+    try {
+        await axios.post('http://localhost:4002/events', event);
+        console.log("Posted to 4002");
+    } catch (err) {
+        console.error("Error posting to 4002", err);
+    }
 
     res.status(201).json({"status": "OK"});
 });
