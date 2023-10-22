@@ -10,6 +10,7 @@ app.use(cors())
 app.post("/events", async (req, res) => {
     const event = req.body;
 
+    //Sending to Posts service
     try {
         await axios.post('http://localhost:4000/events', event);
         console.log("Posted to 4000");
@@ -17,6 +18,7 @@ app.post("/events", async (req, res) => {
         console.error("Error posting to 4000", err);
     }
 
+    //Sending to Comments service
     try {
         await axios.post('http://localhost:4001/events', event);
         console.log("Posted to 4001");
@@ -24,11 +26,20 @@ app.post("/events", async (req, res) => {
         console.error("Error posting to 4001", err);
     }
 
+    //Sending to Query service
     try {
         await axios.post('http://localhost:4002/events', event);
         console.log("Posted to 4002");
     } catch (err) {
         console.error("Error posting to 4002", err);
+    }
+
+    //Sending to moderation service
+    try {
+        await axios.post('http://localhost:4003/events', event);
+        console.log("Posted to 4003");
+    } catch (err) {
+        console.error("Error posting to 4003", err);
     }
 
     res.status(201).json({"status": "OK"});
