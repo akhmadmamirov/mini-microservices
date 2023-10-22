@@ -7,8 +7,12 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors())
 
+const events = []
+
 app.post("/events", async (req, res) => {
     const event = req.body;
+
+    events.push(event)
 
     //Sending to Posts service
     try {
@@ -44,6 +48,11 @@ app.post("/events", async (req, res) => {
 
     res.status(201).json({"status": "OK"});
 });
+
+//Retrieving all the events
+app.get('/events', (req,res) => {
+    res.status(200).json(events)
+})
 
 app.listen(4005, () => {
     console.log("Listening on Port 4005");
