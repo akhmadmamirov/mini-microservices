@@ -23,28 +23,28 @@ app.post("/events", async (req, res) => {
     }
 
     //Sending to Comments service
-    // try {
-    //     await axios.post('http://localhost:4001/events', event);
-    //     console.log("Posted to 4001");
-    // } catch (err) {
-    //     console.error("Error posting to 4001", err);
-    // }
+    try {
+        await axios.post('http://comments-srv:4001/events', event);
+        console.log("Posted to 4001");
+    } catch (err) {
+        console.error("Error posting to 4001", err);
+    }
 
-    // //Sending to Query service
-    // try {
-    //     await axios.post('http://localhost:4002/events', event);
-    //     console.log("Posted to 4002");
-    // } catch (err) {
-    //     console.error("Error posting to 4002", err);
-    // }
+    //Sending to Query service
+    try {
+        await axios.post('http://query-srv:4002/events', event);
+        console.log("Posted to 4002");
+    } catch (err) {
+        console.error("Error posting to 4002", err);
+    }
 
-    // //Sending to moderation service
-    // try {
-    //     await axios.post('http://localhost:4003/events', event);
-    //     console.log("Posted to 4003");
-    // } catch (err) {
-    //     console.error("Error posting to 4003", err);
-    // }
+    //Sending to moderation service
+    try {
+        await axios.post('http://moderation-srv:4003/events', event);
+        console.log("Posted to 4003");
+    } catch (err) {
+        console.error("Error posting to 4003", err);
+    }
 
     res.status(201).json({"status": "OK"});
 });
